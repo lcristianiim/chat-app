@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+    <head>
+	<title>Chat Demo</title>
+        <link rel="stylesheet" href="stylesheets/foundation/css/foundation.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
+    </head>
+    <body>
+        <div class="site">
+            <div class="black-header">
+                POWERED BY NODEJS
+            </div>
+            <section class="chat-banner">
+                <h2>Real time chat application</h2>
+                <h3>This simple chat application demonstrates the power of the sockets.io on the nodejs platform.</h3>
+            </section>
+
+            <form name="chatform">
+                <div class="row">
+                    <div class="medium-6 columns right">
+                        <label>
+                            <input type="text" placeholder="Your message here">
+                        </label>
+                        <button class="button right">Send</button>
+                    </div>
+                    <div class="medium-6 columns right">
+                        <div class="callout">
+                            <div class="details">
+                                <h5>Messages list.</h5>
+                                <p>Here you will recieve automagically all your messages.</p>
+                            </div>
+                            <ul id="messages">
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <footer>
+            Made by CRISTIAN SZABO
+        </footer>
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+
+            document.forms['chatform'].addEventListener('submit', function (event){
+                event.preventDefault();
+            })
+
+            document.getElementsByTagName('button')[0].onclick = function () {
+                let msg = document.getElementsByTagName('input')[0].value;
+                socket.emit('client send', msg);
+            }
+
+            socket.on('server send', function(msg){
+                let messages = document.getElementById('messages');
+                let newLi = document.createElement('li');
+                let details = document.getElementsByClassName('details');
+
+                if (details[0] && details[0].className == 'details') {
+                    details[0].setAttribute('class', 'hidden');
+                }
+
+                document.getElementsByTagName('input')[0].value = '';
+
+                newLi.innerHTML = msg;
+                messages.appendChild(newLi);
+            });
+
+        </script>
+
+    </body>
+</html>

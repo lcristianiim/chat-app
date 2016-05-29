@@ -1,0 +1,64 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-width: 100vh;
+}
+
+.site {
+    flex: 1;
+}
+
+.chat-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url('/public/images/banner.svg');
+    height: 446px;
+    color: white;
+}
+
+.chat-banner h2, .chat-banner h3 {
+    max-width: 1000px;
+    text-align: center;
+}
+
+.black-header {
+    background: black;
+    color: green;
+    line-height: 2.6em;
+    padding-left: 15px;
+}
+
+form {
+    padding-top: 75px;
+}
+
+.hidden {
+    display: none;
+}
+
+#messages {
+    margin-left: 0;
+}
+
+#messages li {
+    color: #2779C3;
+    list-style-type: none;
+}
+
+.details h5 {
+    color: #333;
+}
+
+.details p {
+    color: #666;
+}
+
+footer {
+    background-color: #333;
+    color: #666;
+    font-weight: bold;
+    padding-left: 15px;
+    line-height: 2.6em;
+}
